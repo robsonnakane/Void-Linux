@@ -10,8 +10,10 @@ sudo xbps-installer -Su;
 sudo xbps-installer -S podman -y;
 sudo xbps-installer -S flatpak -y;
 sudo xbps-installer -S curl -y;
-curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
+sudo xbps-installer -S xtools -y;
+curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh;
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
+xcheckrestart;
 
 ##Após o reboot##
         ##Criação dos containeres no distrobox##
