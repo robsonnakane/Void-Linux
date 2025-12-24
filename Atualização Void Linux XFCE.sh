@@ -4,8 +4,8 @@
             ###Atualização completa do sistema###
 
 ##Comandos no Super User##
-#sudo xbps-install -u xbps;
-sudo xbps-install -Su;
+#sudo xbps-install -u -y xbps;
+sudo xbps-install -Su -y;
 #sudo xbps-install -S -y xtools flatpak;
 #flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
 xcheckrestart;
