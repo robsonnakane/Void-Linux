@@ -18,7 +18,7 @@ PACKAGES="sway seatd dbus polkit foot Waybar swayidle swaylock grim slurp light 
           pipewire wireplumber blueman fastfetch simple-scan thunderbird audacious gimp \
           transmission-gtk rpi-imager firefox gwenview kate kdenlive yt-dlp xfburn audacity \
           inkscape lutris kitty rsync flatpak xdg-desktop-portal xdg-desktop-portal-gtk \
-          xdg-desktop-portal-wlr bluez libspa-bluetooth"
+          xdg-desktop-portal-wlr bluez libspa-bluetooth gnome-boxes"
 
 # Serviços a ativar no live
 SERVICES="seatd dbus bluetoothd"
