@@ -5,6 +5,7 @@
 
 ##Comandos no Super User##
 #sudo xbps-install -u -y xbps;
+#sudo xbps-install -S -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree;
 sudo xbps-install -Su -y;
 #sudo xbps-install -S -y xtools flatpak;
 #flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
