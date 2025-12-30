@@ -43,7 +43,7 @@ sudo xbps-install -S -y pipewire wireplumber alsa-pipewire libjack-pipewire alsa
 
 ## 5. Drivers de vídeo (escolher para o notebook)
 ### Intel
-#sudo xbps-install -S -y mesa-dri linux-firmware-intel;
+sudo xbps-install -S -y mesa-dri linux-firmware-intel;
 
 ### AMD nova (amdgpu)
 #sudo xbps-install -S -y mesa-dri xf86-video-amdgpu;
@@ -52,7 +52,7 @@ sudo xbps-install -S -y pipewire wireplumber alsa-pipewire libjack-pipewire alsa
 
 
 ### Nvidia (driver aberto) (escolher para o desktop)
-sudo xbps-install -S -y mesa-nouveau-dri;
+#sudo xbps-install -S -y mesa-nouveau-dri;
 
 ### Nvidia (proprietário)
 #sudo xbps-install -S -y void-repo-nonfree;
