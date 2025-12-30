@@ -60,7 +60,7 @@ sudo xbps-install -S -y mesa-dri linux-firmware-intel;
 
 ## 6. Ativar serviços obrigatórios (runit)
 sudo ln -s /etc/sv/dbus /var/service/;
-sudo ln -s /etc/sv/elogind /var/service/;
+sudo ln -s /etc/sv/seatd /var/service/;
 sudo ln -s /etc/sv/polkitd /var/service/;
 sudo ln -s /etc/sv/NetworkManager /var/service/;
 sudo ln -s /etc/sv/sddm /var/service/
