@@ -3,10 +3,10 @@
 # 🐧 Void Linux + KDE Plasma + PipeWire — Tutorial
 # ⚠️ **IMPORTANTE — LEIA ANTES DE COMEÇAR**
 # Este tutorial **NÃO deve ser executado como `root`**, exceto quando **explicitamente indicado**.
-# Todos os comandos foram pensados para serem executados por **um usuário comum**, utilizando `sudo` quando necessário.
+# Todos os comandos foram pensados para serem executados por **um usuário comum**, utilizando `root` quando necessário.
 # Executar todo o tutorial logado como `root`:
 # - quebra a lógica de permissões
-# - invalida etapas como configuração de `sudo`
+# - invalida etapas como configuração de `root`
 # - pode gerar erros silenciosos ou comportamentos inesperados
 # 👉 **Recomendação**  
 # Se você acabou de instalar o sistema e está logado como `root`:
@@ -16,72 +16,73 @@
 # Regra clássica de sistemas Unix/Linux:
 # **`root` é exceção. Usuário comum é regra.**
 
-## 0. Configurar sudo - (grupo wheel) - evita ficar pedindo senha de root
-#sudo usermod -aG wheel "$USER"
-#sudo tee -a /etc/sudoers.d/g_wheel #/dev/null << EOF
+## 0. Configurar doas - (grupo wheel) - evita ficar pedindo senha de root
+#doas usermod -aG wheel "$USER"
+#doas tee -a /etc/doasers.d/g_wheel #/dev/null << EOF
 #%wheel ALL=(ALL:ALL) NOPASSWD: ALL
 #EOF
 #Permissões obrigatórias
-#sudo chmod 440 /etc/sudoers.d/g_wheel
+#doas chmod 440 /etc/doasers.d/g_wheel
 
 ##baixar o shell script do github
-#sudo xbps-install -S -y git;
+#doas xbps-install -S -y git;
 #git clone https://github.com/robsonnakane/Void-Linux.git;
 
 ## 1. Atualizar o sistema
-sudo xbps-install -u xbps;
-sudo xbps-install -Syu;
-sudo xbps-install -S -y xtools seatd;
-xcheckrestart;
+doas xbps-install -u xbps;
+doas xbps-install -Syu;
+doas xbps-install -S -y xtools seatd;
 
 ## 2. Instalar o Plasma completo (meta-pacote)
-sudo xbps-install -S -y kde-plasma noto-fonts-emoji;
+doas xbps-install -S -y kde-plasma noto-fonts-emoji;
 
 
 ## 3. Instalar o SDDM (display manager oficial do KDE)
-#sudo xbps-install -S -y sddm; #Tela de login para o notebook
-sudo xbps-install -S -y lightdm lightdm-gtk3-greeter; #Tela de login para o desktop
+#doas xbps-install -S -y sddm; #Tela de login para o notebook
+doas xbps-install -S -y lightdm lightdm-gtk3-greeter; #Tela de login para o desktop
 
 ## 4. Instalar áudio com PipeWire (som completo)
 ### PipeWire + WirePlumber + ALSA + Pulse compat
-sudo xbps-install -S -y pipewire wireplumber alsa-pipewire libjack-pipewire alsa-utils pavucontrol;
+doas xbps-install -S -y pipewire wireplumber alsa-pipewire libjack-pipewire alsa-utils pavucontrol;
 
 ## 5. Drivers de vídeo (escolher para o notebook)
 ### Intel
-#sudo xbps-install -S -y mesa-dri linux-firmware-intel;
+#doas xbps-install -S -y mesa-dri linux-firmware-intel;
 
 ### AMD nova (amdgpu)
-#sudo xbps-install -S -y mesa-dri xf86-video-amdgpu;
+#doas xbps-install -S -y mesa-dri xf86-video-amdgpu;
 ### AMD antiga 
-#sudo xbps-install -S -y mesa-dri xf86-video-ati;
+#doas xbps-install -S -y mesa-dri xf86-video-ati;
 
 
 ### Nvidia (driver aberto) (escolher para o desktop)
-sudo xbps-install -S -y mesa-nouveau-dri;
+doas xbps-install -S -y mesa-nouveau-dri;
 
 ### Nvidia (proprietário)
-#sudo xbps-install -S -y void-repo-nonfree;
-#sudo xbps-install -S -y nvidia;
+#doas xbps-install -S -y void-repo-nonfree;
+#doas xbps-install -S -y nvidia;
+
+xcheckrestart;
 
 ## 6. Ativar serviços obrigatórios (runit)
-sudo rm -rf /var/service/dbus;
-sudo ln -s /etc/sv/dbus /var/service/;
+doas rm -rf /var/service/dbus;
+doas ln -s /etc/sv/dbus /var/service/;
 
-sudo rm -rf /var/service/seatd;
-sudo ln -s /etc/sv/seatd /var/service/;
+doas rm -rf /var/service/seatd;
+doas ln -s /etc/sv/seatd /var/service/;
 
-sudo rm -rf /var/service/polkitd;
-sudo ln -s /etc/sv/polkitd /var/service/;
+doas rm -rf /var/service/polkitd;
+doas ln -s /etc/sv/polkitd /var/service/;
 
-sudo rm -rf /var/service/NetworkManager;
-sudo ln -s /etc/sv/NetworkManager /var/service/;
+doas rm -rf /var/service/NetworkManager;
+doas ln -s /etc/sv/NetworkManager /var/service/;
 
 #Tela de login para o notebook
-#sudo rm -rf /var/service/sddm;
-#sudo ln -s /etc/sv/sddm /var/service/;
-#sudo sv restart sddm
+#doas rm -rf /var/service/sddm;
+#doas ln -s /etc/sv/sddm /var/service/;
+#doas sv restart sddm
 
 #Tela de login para o desktop
-sudo rm -rf /var/service/lightdm;
-sudo ln -s /etc/sv/lightdm /var/service/;
-sudo sv restart lightdm
+doas rm -rf /var/service/lightdm;
+doas ln -s /etc/sv/lightdm /var/service/;
+doas sv restart lightdm
