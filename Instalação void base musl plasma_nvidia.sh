@@ -39,7 +39,8 @@ sudo xbps-install -S -y kde-plasma noto-fonts-emoji;
 
 
 ## 3. Instalar o SDDM (display manager oficial do KDE)
-sudo xbps-install -S -y sddm;
+#sudo xbps-install -S -y sddm; #Tela de login para o notebook
+sudo xbps-install -S -y lightdm lightdm-gtk3-greeter; #Tela de login para o desktop
 
 ## 4. Instalar áudio com PipeWire (som completo)
 ### PipeWire + WirePlumber + ALSA + Pulse compat
@@ -62,26 +63,25 @@ sudo xbps-install -S -y mesa-nouveau-dri;
 #sudo xbps-install -S -y void-repo-nonfree;
 #sudo xbps-install -S -y nvidia;
 
-## 6. Adicionar modeline seguro e forçar no SDDM
-sudo tee /etc/sddm/scripts/Xsetup << EOF
-#!/bin/sh
-# Adiciona modo seguro 1280x1024 @60Hz se não existir
-xrandr --newmode "1280x1024_60.00" 109.00 1280 1368 1496 1712 1024 1027 1034 1063 -hsync +vsync
-xrandr --addmode $(xrandr | grep connected | cut -d' ' -f1) "1280x1024_60.00"
-xrandr --output $(xrandr | grep connected | cut -d' ' -f1) --mode "1280x1024_60.00"
-EOF
-
-sudo chmod +x /etc/sddm/scripts/Xsetup
-
-## 7. Ativar serviços obrigatórios (runit)
+## 6. Ativar serviços obrigatórios (runit)
 sudo rm -rf /var/service/dbus;
-sudo rm -rf /var/service/seatd;
-sudo rm -rf /var/service/polkitd;
-sudo rm -rf /var/service/NetworkManager;
-sudo rm -rf /var/service/sddm;
 sudo ln -s /etc/sv/dbus /var/service/;
+
+sudo rm -rf /var/service/seatd;
 sudo ln -s /etc/sv/seatd /var/service/;
+
+sudo rm -rf /var/service/polkitd;
 sudo ln -s /etc/sv/polkitd /var/service/;
+
+sudo rm -rf /var/service/NetworkManager;
 sudo ln -s /etc/sv/NetworkManager /var/service/;
-sudo ln -s /etc/sv/sddm /var/service/;
-sudo sv restart sddm
+
+#Tela de login para o notebook
+#sudo rm -rf /var/service/sddm;
+#sudo ln -s /etc/sv/sddm /var/service/;
+#sudo sv restart sddm
+
+#Tela de login para o desktop
+sudo rm -rf /var/service/lightdm;
+sudo ln -s /etc/sv/lightdm /var/service/;
+sudo sv restart lightdm
