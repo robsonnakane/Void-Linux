@@ -59,6 +59,11 @@ sudo xbps-install -S -y mesa-dri linux-firmware-intel;
 #sudo xbps-install -S -y nvidia;
 
 ## 6. Ativar serviços obrigatórios (runit)
+sudo rm -rf /var/service/dbus;
+sudo rm -rf /var/service/seatd;
+sudo rm -rf /var/service/polkitd;
+sudo rm -rf /var/service/NetworkManager;
+sudo rm -rf /var/service/sddm;
 sudo ln -s /etc/sv/dbus /var/service/;
 sudo ln -s /etc/sv/seatd /var/service/;
 sudo ln -s /etc/sv/polkitd /var/service/;
