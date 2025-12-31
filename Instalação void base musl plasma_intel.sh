@@ -31,7 +31,7 @@
 ## 1. Atualizar o sistema
 sudo xbps-install -u xbps;
 sudo xbps-install -Syu;
-sudo xbps-install -S -y xtools;
+sudo xbps-install -S -y xtools seatd;
 xcheckrestart;
 
 ## 2. Instalar o Plasma completo (meta-pacote)
@@ -62,7 +62,17 @@ sudo xbps-install -S -y mesa-dri linux-firmware-intel;
 #sudo xbps-install -S -y void-repo-nonfree;
 #sudo xbps-install -S -y nvidia;
 
-## 6. Ativar serviços obrigatórios (runit)
+## 6. Forçar resolução segura no SDDM para monitores antigos (LG LX40 - 1280x1024 nativo)
+sudo mkdir -p /etc/sddm/scripts
+sudo tee /etc/sddm/scripts/Xsetup << EOF
+#!/bin/sh
+# Força resolução compatível com monitores antigos 5:4
+xrandr --output $(xrandr | grep connected | cut -d' ' -f1) --mode 1280x1024 --rate 60
+EOF
+
+sudo chmod +x /etc/sddm/scripts/Xsetup
+
+## 7. Ativar serviços obrigatórios (runit)
 sudo ln -s /etc/sv/dbus /var/service/;
 sudo ln -s /etc/sv/seatd /var/service/;
 sudo ln -s /etc/sv/polkitd /var/service/;
