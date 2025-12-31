@@ -67,7 +67,7 @@ sudo mkdir -p /etc/sddm/scripts
 sudo tee /etc/sddm/scripts/Xsetup << EOF
 #!/bin/sh
 # Força resolução compatível com monitores antigos 5:4
-xrandr --output $(xrandr | grep connected | cut -d' ' -f1) --mode 1280x1024 --rate 60
+xrandr --output $(xrandr | grep connected | cut -d' ' -f1) --mode 1024x768 --rate 60
 EOF
 
 sudo chmod +x /etc/sddm/scripts/Xsetup
