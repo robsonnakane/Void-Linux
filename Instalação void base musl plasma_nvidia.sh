@@ -56,7 +56,7 @@ doas xbps-install -S -y pipewire wireplumber alsa-pipewire libjack-pipewire alsa
 
 
 ### Nvidia (driver aberto) (escolher para o desktop)
-doas xbps-install -S -y mesa-nouveau-dri;
+#doas xbps-install -S -y mesa-nouveau-dri;
 
 ### Nvidia (proprietário)
 #doas xbps-install -S -y void-repo-nonfree;
