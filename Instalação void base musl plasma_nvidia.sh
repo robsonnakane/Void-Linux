@@ -62,12 +62,13 @@ sudo xbps-install -S -y mesa-nouveau-dri;
 #sudo xbps-install -S -y void-repo-nonfree;
 #sudo xbps-install -S -y nvidia;
 
-## 6. Forçar resolução segura no SDDM para monitores antigos (LG LX40 - 1280x1024 nativo)
-sudo mkdir -p /etc/sddm/scripts
+## 6. Adicionar modeline seguro e forçar no SDDM
 sudo tee /etc/sddm/scripts/Xsetup << EOF
 #!/bin/sh
-# Força resolução compatível com monitores antigos 5:4
-xrandr --output $(xrandr | grep connected | cut -d' ' -f1) --mode 1024x768 --rate 60
+# Adiciona modo seguro 1280x1024 @60Hz se não existir
+xrandr --newmode "1280x1024_60.00" 109.00 1280 1368 1496 1712 1024 1027 1034 1063 -hsync +vsync
+xrandr --addmode $(xrandr | grep connected | cut -d' ' -f1) "1280x1024_60.00"
+xrandr --output $(xrandr | grep connected | cut -d' ' -f1) --mode "1280x1024_60.00"
 EOF
 
 sudo chmod +x /etc/sddm/scripts/Xsetup
