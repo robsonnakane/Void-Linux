@@ -34,7 +34,7 @@ doas xbps-install -Syu;
 doas xbps-install -S -y xtools seatd;
 
 ## 2. Instalar o Plasma completo (meta-pacote)
-doas xbps-install -S -y kde-plasma noto-fonts-emoji;
+doas xbps-install -S -y kde-plasma noto-fonts-emoji xorg-minimal;
 
 
 ## 3. Instalar o SDDM (display manager oficial do KDE)
