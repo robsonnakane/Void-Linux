@@ -4,12 +4,6 @@
 # Uso: ./configura-doas.sh
 # Executar como usuário comum (vai pedir senha de root)
 
-# Verifica se está rodando no Void Linux
-if [ ! -f /etc/void-release ]; then
-    echo "Este script é feito para o Void Linux."
-    exit 1
-fi
-
 # Pergunta o nome do usuário (padrão: usuário atual)
 read -p "Digite o nome do usuário que terá acesso ao doas [padrão: $USER]: " USUARIO
 USUARIO=${USUARIO:-$USER}
