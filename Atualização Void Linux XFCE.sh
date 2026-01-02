@@ -14,7 +14,7 @@
 #log out
 
 ##Atualização do Void Linux##
-doas xbps-install -Su -y;
+doas xbps-install -Su -y; #rodar a primeira atualização sem a instalação dos pacotes#
 #doas xbps-install -S -y flatpak xtools rsync nano;
 #flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
 xcheckrestart;
