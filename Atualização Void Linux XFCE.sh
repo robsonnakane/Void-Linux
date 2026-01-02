@@ -3,8 +3,15 @@
       ###Void Linux by distrobox###
       ###Atualização completa do sistema###
 
-##Configuração do 'doas' como su (copiar e colar no terminal antes da instalação)
-#xbps-install -u -y xbps; xbps-install -Su -y; xbps-install -y opendoas; usermod -aG wheel robsonnakane; echo "permit persist :wheel" > /etc/doas.conf; chown root:root /etc/doas.conf; chmod 400 /etc/doas.conf
+##Configuração do 'doas' como su (copiar e colar no terminal antes da instalação, passo a passo)
+#xbps-install -u -y xbps
+#xbps-install -Su -y
+#xbps-install -y opendoas
+#usermod -aG wheel robsonnakane
+#echo "permit persist :wheel" > /etc/doas.conf
+#chown root:root /etc/doas.conf
+#chmod 400 /etc/doas.conf
+#log out
 
 ##Atualização do Void Linux##
 doas xbps-install -Su -y;
@@ -17,10 +24,6 @@ xcheckrestart;
 
     ##Instalação dos pacotes flatpaks##
 #flatpak install flathub com.spotify.Client -y; flatpak install flathub com.valvesoftware.Steam -y; flatpak install flathub us.zoom.Zoom -y; flatpak install flathub org.onlyoffice.desktopeditors -y; flatpak install flathub com.adobe.Flash-Player-Projector -y; flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y; flatpak install flathub org.chromium.Chromium -y; flatpak install flathub org.fedoraproject.MediaWriter -y; flatpak install flathub org.kde.kget -y; flatpak install flathub org.videolan.VLC -y; flatpak install flathub net.mkiol.SpeechNote -y; flatpak install flathub com.saivert.pwvucontrol -y;
-
-    ##Bluetooth##
-#rfkill unblock bluetooth; xbps-install -S -y bluez bluez-alsa libspa-bluetooth; sv restart bluetoothd; sv restart dbus; sv restart sshd;
-
 
     ##Atualização do Flatpak##
 flatpak update -y;
