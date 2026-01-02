@@ -9,7 +9,7 @@
 #chmod +x 'nome do arquivo';
 
 ##Configuração do 'doas' como su (copiar e colar no terminal antes da instalação)
-#xbps-install -Su; xbps-install -y opendoas; usermod -aG wheel robsonnakane; echo "permit persist :wheel" > /etc/doas.conf; chown root:root /etc/doas.conf; chmod 400 /etc/doas.conf; exit
+xbps-install -u -y xbps; xbps-install -Su -y; xbps-install -y opendoas; usermod -aG wheel robsonnakane; echo "permit persist :wheel" > /etc/doas.conf; chown root:root /etc/doas.conf; chmod 400 /etc/doas.conf
 
 ##Atualização do Void Linux##
 #doas xbps-install -u xbps;
