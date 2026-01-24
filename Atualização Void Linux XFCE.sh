@@ -20,7 +20,7 @@ doas xbps-install -Su -y; #rodar a primeira atualização sem a instalação dos
 xcheckrestart;
 
     ##Instalação de pacotes##
-#doas xbps-install -S -y fastfetch simple-scan thunderbird audacious gimp transmission-gtk rpi-imager firefox gwenview kate kdenlive yt-dlp xfburn audacity inkscape lutris kitty bluez bluez-alsa blueman bluez-deprecated wireplumber libspa-bluetooth;
+#doas xbps-install -S -y fastfetch simple-scan thunderbird audacious gimp transmission-gtk rpi-imager firefox gwenview kate kdenlive yt-dlp xfburn audacity inkscape lutris kitty bluez bluez-alsa blueman bluez-deprecated wireplumber libspa-bluetooth xfce4-whiskermenu-plugin;
 
 ## Bluetooth
 #doas sv up bluetoothd dbus; doas usermod -aG bluetooth robsonnakane; doas ln -s /etc/sv/bluetoothd /var/service/;
