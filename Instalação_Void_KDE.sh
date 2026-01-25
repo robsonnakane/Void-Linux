@@ -181,7 +181,7 @@ check_kernel
 offer_install_kernel
 
 # Passo 2–4: Plasma, SDDM, PipeWire
-ensure_package_group "KDE Plasma + emoji" plasma noto-fonts-emoji
+ensure_package_group "KDE Plasma + emoji" plasma-desktop noto-fonts-emoji
 ensure_package_group "SDDM" sddm
 ensure_package_group "PipeWire + áudio" pipewire wireplumber alsa-pipewire libjack-pipewire alsa-utils pavucontrol
 
