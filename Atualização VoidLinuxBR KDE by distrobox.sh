@@ -32,7 +32,7 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
         ##Archlinux##
 #distrobox create -Y --name archlinux --image docker.io/library/archlinux:latest;
         ##Fedora##
-#distrobox create -Y --name fedora --image quay.io/fedora/fedora:rawhide;
+#distrobox create -Y --name fedora --image quay.io/fedora/fedora-toolbox:rawhide;
 
 #distrobox-upgrade --all -v;
 
