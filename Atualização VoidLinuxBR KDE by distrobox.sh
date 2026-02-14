@@ -19,10 +19,10 @@ doas xbps-install -Sycc;
 xcheckrestart;
 
     ##Instalação de pacotes KDE oficial##
-doas xbps-install -Sy kitty podman docker crun rsync flatpak xtools nano vinstall;
+doas xbps-install -Sy kitty podman docker crun rsync flatpak xtools nano gnome-disk-utility;
 
     ##Pacotes Voidbr / Chililinux##
-doas xbps-install -Sy voidbr-distrobox voidbr-lynxfetch chili-iso2usb chili-tradutor-go;
+doas xbps-install -Sy voidbr-distrobox voidbr-lynxfetch chili-iso2usb chili-tradutor-go voidbr-vinstall;
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
 
@@ -60,7 +60,7 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
     ##Atualização do Flatpak##
 #flatpak update -y;
 
-reboot
+doas reboot
 
     ##Baixar um vídeo em melhor qualidade:##
 #distrobox enter archlinux -- yt-dlp URL
