@@ -39,13 +39,13 @@ distrobox-upgrade --all -v;
 
         ##Instalação dos pacotes nos containeres distrobox##
 #distrobox enter archlinux -- sudo pacman -S --noconfirm fastfetch simple-scan thunderbird audacious gimp transmission-gtk rpi-imager firefox gwenview kate kdenlive yt-dlp xfburn kcalc spectacle;
-#distrobox enter fedora -- sudo dnf5 install -y audacity inkscape;
+#distrobox enter fedora -- sudo dnf5 install -y audacity inkscape gnome-boxes;
 
         ##Exportação dos pacotes instalados no distrobox archlinux##
 #distrobox enter archlinux -- distrobox-export --app simple-scan; distrobox enter archlinux -- distrobox-export --app thunderbird; distrobox enter archlinux -- distrobox-export --app audacious; distrobox enter archlinux -- distrobox-export --app gimp; distrobox enter archlinux -- distrobox-export --app transmission-gtk; distrobox enter archlinux -- distrobox-export --app rpi-imager; distrobox enter archlinux -- distrobox-export --app firefox; distrobox enter archlinux -- distrobox-export --app gwenview; distrobox enter archlinux -- distrobox-export --app kate; distrobox enter archlinux -- distrobox-export --app kdenlive; distrobox enter archlinux -- distrobox-export --app xfburn; distrobox enter archlinux -- distrobox-export --app kcalc; distrobox enter archlinux -- distrobox-export --app spectacle;
 
         ##Exportação dos pacotes instalados no distrobox fedora##
-#distrobox enter fedora -- distrobox-export --app audacity; distrobox enter fedora -- distrobox-export --app inkscape;
+#distrobox enter fedora -- distrobox-export --app audacity; distrobox enter fedora -- distrobox-export --app inkscape; distrobox enter fedora -- distrobox-export --app gnome-boxes;
 
         ##Instalação do lutris dentro do terminal distrobox debian##
 #echo -e "Types: deb\nURIs: https://download.opensuse.org/repositories/home:/strycore/Debian_12/\nSuites: ./\nComponents: \nSigned-By: /etc/apt/keyrings/lutris.gpg" | sudo tee /etc/apt/sources.list.d/lutris.sources > /dev/null
@@ -66,6 +66,11 @@ doas reboot
 #distrobox enter archlinux -- yt-dlp URL
     ##Baixar só áudio (MP3):
 #distrobox enter archlinux -- yt-dlp -x --audio-format mp3 URL
+
+##Instalação de iso na vm chili
+#chili-fr -s voidlinux.iso vda.qcow2
+##Abrir a vm instalada
+#chili-fr -s vda.qcow2
 
     ##Realização de backup##
 #doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@192.168.15.15:/home/robsonnakane/lenovo/
