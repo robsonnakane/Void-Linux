@@ -14,17 +14,17 @@
 #log out
 
 ##Atualização do Void Linux##
-sudo xbps-install -Suy; #rodar a primeira atualização sem a instalação dos pacotes#
-sudo xbps-install -Sycc;
+doas xbps-install -Suy; #rodar a primeira atualização sem a instalação dos pacotes#
+doas xbps-install -Sycc;
 xcheckrestart;
 
     ##Instalação de pacotes KDE oficial##
-#doas xbps-install -Sy kitty podman docker crun rsync flatpak xtools nano vinstall;
+doas xbps-install -Sy kitty podman docker crun rsync flatpak xtools nano vinstall;
 
     ##Pacotes Voidbr / Chililinux##
-#doas xbps-install -Sy voidbr-distrobox voidbr-lynxfetch chili-iso2usb chili-tradutor-go;
+doas xbps-install -Sy voidbr-distrobox voidbr-lynxfetch chili-iso2usb chili-tradutor-go;
 
-#flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
 
 ##Após o reboot##
         ##Criação dos containeres no distrobox##
