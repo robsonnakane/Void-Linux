@@ -15,16 +15,15 @@
 
 ##Atualização do Void Linux##
 doas xbps-install -Suy; #rodar a primeira atualização sem a instalação dos pacotes#
-doas xbps-install -Sycc;
 xcheckrestart;
 
     ##Instalação de pacotes KDE oficial##
-doas xbps-install -Sy kitty podman docker crun rsync flatpak xtools nano gnome-disk-utility;
+#doas xbps-install -Sy kitty podman docker crun rsync flatpak xtools nano gnome-disk-utility bluez bluez-alsa bluez-deprecated libspa-bluetooth blueman;
 
     ##Pacotes Voidbr / Chililinux##
-doas xbps-install -Sy voidbr-distrobox voidbr-lynxfetch chili-iso2usb chili-tradutor-go voidbr-vinstall;
+#doas xbps-install -Sy voidbr-distrobox voidbr-lynxfetch chili-iso2usb chili-tradutor-go voidbr-vinstall;
 
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
+#flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
 
 ##Após o reboot##
         ##Criação dos containeres no distrobox##
@@ -58,8 +57,8 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 #flatpak install flathub com.spotify.Client -y;flatpak install flathub us.zoom.Zoom -y; flatpak install flathub org.onlyoffice.desktopeditors -y; flatpak install flathub com.adobe.Flash-Player-Projector -y; flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y; flatpak install flathub org.chromium.Chromium -y; flatpak install flathub org.fedoraproject.MediaWriter -y; flatpak install flathub org.kde.kget -y; flatpak install flathub org.videolan.VLC -y; flatpak install flathub net.mkiol.SpeechNote -y; flatpak install flathub com.saivert.pwvucontrol -y; flatpak install flathub io.github.dvlv.boxbuddyrs -y; flatpak install flathub org.telegram.desktop -y; flatpak install flathub com.obsproject.Studio -y;
 
     ##Atualização do Flatpak##
-#flatpak update -y;
-
+flatpak update -y;
+doas vinstall -Sycc;
 doas reboot
 
     ##Baixar um vídeo em melhor qualidade:##
