@@ -18,7 +18,7 @@ doas xbps-install -Suy; #rodar a primeira atualização sem a instalação dos p
 xcheckrestart;
 
     ##Instalação de pacotes KDE oficial##
-#doas xbps-install -Sy kitty podman docker crun rsync flatpak xtools nano gnome-disk-utility bluez bluez-alsa bluez-deprecated libspa-bluetooth blueman;
+#doas xbps-install -Sy kitty podman docker crun rsync flatpak xtools nano gnome-disk-utility bluez bluez-alsa bluez-deprecated libspa-bluetooth blueman kdeconnect spectacle;
 
     ##Pacotes Voidbr / Chililinux##
 #doas xbps-install -Sy voidbr-distrobox voidbr-lynxfetch chili-iso2usb chili-tradutor-go voidbr-vinstall;
@@ -34,14 +34,14 @@ xcheckrestart;
         ##Fedora##
 #distrobox create -Y --name fedora --image quay.io/fedora/fedora:rawhide;
 
-#distrobox-upgrade --all -v;
+distrobox-upgrade --all -v;
 
         ##Instalação dos pacotes nos containeres distrobox##
-#distrobox enter archlinux -- sudo pacman -S --noconfirm fastfetch simple-scan thunderbird audacious gimp transmission-gtk rpi-imager firefox gwenview kate kdenlive yt-dlp xfburn kcalc spectacle;
+#distrobox enter archlinux -- sudo pacman -S --noconfirm fastfetch simple-scan thunderbird audacious gimp transmission-gtk rpi-imager firefox gwenview kate kdenlive yt-dlp xfburn kcalc okular;
 #distrobox enter fedora -- sudo dnf5 install -y audacity inkscape gnome-boxes;
 
         ##Exportação dos pacotes instalados no distrobox archlinux##
-#distrobox enter archlinux -- distrobox-export --app simple-scan; distrobox enter archlinux -- distrobox-export --app thunderbird; distrobox enter archlinux -- distrobox-export --app audacious; distrobox enter archlinux -- distrobox-export --app gimp; distrobox enter archlinux -- distrobox-export --app transmission-gtk; distrobox enter archlinux -- distrobox-export --app rpi-imager; distrobox enter archlinux -- distrobox-export --app firefox; distrobox enter archlinux -- distrobox-export --app gwenview; distrobox enter archlinux -- distrobox-export --app kate; distrobox enter archlinux -- distrobox-export --app kdenlive; distrobox enter archlinux -- distrobox-export --app xfburn; distrobox enter archlinux -- distrobox-export --app kcalc; distrobox enter archlinux -- distrobox-export --app spectacle;
+#distrobox enter archlinux -- distrobox-export --app simple-scan; distrobox enter archlinux -- distrobox-export --app thunderbird; distrobox enter archlinux -- distrobox-export --app audacious; distrobox enter archlinux -- distrobox-export --app gimp; distrobox enter archlinux -- distrobox-export --app transmission-gtk; distrobox enter archlinux -- distrobox-export --app rpi-imager; distrobox enter archlinux -- distrobox-export --app firefox; distrobox enter archlinux -- distrobox-export --app gwenview; distrobox enter archlinux -- distrobox-export --app kate; distrobox enter archlinux -- distrobox-export --app kdenlive; distrobox enter archlinux -- distrobox-export --app xfburn; distrobox enter archlinux -- distrobox-export --app kcalc;  distrobox enter archlinux -- distrobox-export --app okular;
 
         ##Exportação dos pacotes instalados no distrobox fedora##
 #distrobox enter fedora -- distrobox-export --app audacity; distrobox enter fedora -- distrobox-export --app inkscape; distrobox enter fedora -- distrobox-export --app gnome-boxes;
