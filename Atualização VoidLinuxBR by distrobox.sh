@@ -20,7 +20,11 @@ doas xbps-install -Syu;
 xcheckrestart;
 
     ##Instalação de pacotes KDE oficial##
-#doas xbps-install -Sy podman docker crun rsync flatpak xtools nano gnome-disk-utility bluez bluez-alsa bluez-deprecated libspa-bluetooth blueman kdeconnect spectacle speedtest-cli ethtool;
+#doas xbps-install -Sy podman docker crun rsync flatpak xtools nano gnome-disk-utility bluez bluez-alsa bluez-deprecated libspa-bluetooth blueman kdeconnect spectacle speedtest-cli ethtool tailscale;
+
+##Ativação do tailscale##
+#doas ln -s /etc/sv/tailscaled /var/service/
+#doas tailscale up --force-reauth;
 
     ##Pacotes Voidbr / Chililinux##
 #doas xbps-install -Sy voidbr-distrobox voidbr-lynxfetch chili-iso2usb chili-tradutor-go voidbr-vinstall;
@@ -40,6 +44,7 @@ distrobox-upgrade --all -v;
 
         ##Instalação dos pacotes nos containeres distrobox##
 #distrobox enter archlinux -- sudo pacman -S --noconfirm simple-scan thunderbird audacious gimp transmission-gtk rpi-imager firefox gwenview kate kdenlive yt-dlp xfburn kcalc okular;
+
 #distrobox enter fedora -- sudo dnf5 install -y audacity inkscape gnome-boxes;
 
         ##Exportação dos pacotes instalados no distrobox archlinux##
@@ -56,11 +61,11 @@ distrobox-upgrade --all -v;
 #distrobox-export --app lutris
 
         ##Instalação dos pacotes flatpaks##
-#flatpak install flathub com.spotify.Client -y;flatpak install flathub us.zoom.Zoom -y; flatpak install flathub org.onlyoffice.desktopeditors -y; flatpak install flathub com.adobe.Flash-Player-Projector -y; flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y; flatpak install flathub org.chromium.Chromium -y; flatpak install flathub org.fedoraproject.MediaWriter -y; flatpak install flathub org.kde.kget -y; flatpak install flathub org.videolan.VLC -y; flatpak install flathub net.mkiol.SpeechNote -y; flatpak install flathub com.saivert.pwvucontrol -y; flatpak install flathub io.github.dvlv.boxbuddyrs -y; flatpak install flathub org.telegram.desktop -y; flatpak install flathub com.obsproject.Studio -y;
+#flatpak install flathub com.spotify.Client -y;flatpak install flathub us.zoom.Zoom -y; flatpak install flathub org.onlyoffice.desktopeditors -y; flatpak install flathub com.adobe.Flash-Player-Projector -y; flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y; flatpak install flathub org.chromium.Chromium -y; flatpak install flathub org.fedoraproject.MediaWriter -y; flatpak install flathub org.kde.kget -y; flatpak install flathub org.videolan.VLC -y; flatpak install flathub net.mkiol.SpeechNote -y; flatpak install flathub com.saivert.pwvucontrol -y; flatpak install flathub io.github.dvlv.boxbuddyrs -y; flatpak install flathub org.telegram.desktop -y; flatpak install flathub com.obsproject.Studio -y; flatpak install flathub org.jousse.vincent.Pomodorolm -y;
 
     ##Atualização do Flatpak##
 flatpak update -y;
-vinstall -Scc;
+vinstall -Sycc;
 doas reboot
 
 ##Baixar um vídeo em melhor qualidade:##
