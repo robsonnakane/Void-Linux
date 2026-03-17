@@ -22,6 +22,7 @@ doas xbps-install -Suy;
 ##Ativação do tailscale##
 #doas ln -s /etc/sv/tailscaled /var/service/
 #doas tailscale up --force-reauth;
+#doas tailscale up --ssh --accept-dns=false;
 
     ##Pacotes Voidbr / Chililinux##
 #doas xbps-install -Sy voidbr-distrobox podman docker crun voidbr-lynxfetch chili-iso2usb chili-tradutor-go voidbr-vinstall;
@@ -58,7 +59,13 @@ doas reboot
     ##Baixar só áudio (MP3):
 #distrobox enter archlinux -- yt-dlp -x --audio-format mp3 URL
 
-    ##Realização de backup##
-#doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@192.168.15.15:/home/robsonnakane/lenovo/
-    ##Recuperação de backup
-#doas rsync -avzrp --delete robsonnakane@192.168.15.15:/home/robsonnakane/lenovo/ /home/robsonnakane/'Robson Nakane'/
+##Backup/Acesso via Rsync + Tailscale##
+##voidlinuxserver
+#doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@100.73.4.37:/home/robsonnakane/lenovo/
+##Acesso voidlinuxserver
+#ssh robsonnakane@100.73.4.37
+
+##capengapc
+#doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@100.125.34.59:/home/robsonnakane/'Robson Nakane'/
+## Acesso capengapc
+#ssh robsonnakane@100.125.34.59
