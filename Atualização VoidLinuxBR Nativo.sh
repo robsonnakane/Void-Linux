@@ -14,10 +14,24 @@
 #log out
 
 ##Atualização do Void Linux##
-#doas xbps-pkgdb -a;
+doas xbps-pkgdb -a;
 doas xbps-install -Sy;
 doas xbps-install -Suy;
-#doas xbps-install -Sy flatpak xtools rsync nano void-repo-nonfree void-repo-multilib-nonfree void-repo-multilib fastfetch simple-scan thunderbird audacious gimp transmission-gtk rpi-imager firefox gwenview kate kdenlive yt-dlp xfburn audacity inkscape lutris gnome-boxes xfce4-screenshooter kdeconnect xfce4-whiskermenu-plugin speedtest-cli ethtool tailscale;
+#doas rkhunter --propupd --update;
+#doas rkhunter --check  --skip-keypress --report-warnings-only;
+#doas cat /var/log/rkhunter.log | grep -E "Warning";
+xcheckrestart;
+
+
+##Consulta do log rkhunter##
+#doas cat /var/log/rkhunter.log | grep -E "Warning|None found"
+
+#doas xbps-install -Sy flatpak xtools rsync nano void-repo-nonfree void-repo-multilib-nonfree void-repo-multilib fastfetch simple-scan thunderbird audacious gimp transmission-gtk rpi-imager firefox gwenview kate kdenlive yt-dlp xfburn audacity inkscape lutris gnome-boxes xfce4-screenshooter kdeconnect xfce4-whiskermenu-plugin speedtest-cli ethtool tailscale rkhunter ufw;
+
+##Ativar o ufw firewall##
+#doas ufw status;
+#doas ufw enable;
+#doas ufw allow ssh;
 
 ##Ativação do tailscale##
 #doas ln -s /etc/sv/tailscaled /var/service/
@@ -28,7 +42,6 @@ doas xbps-install -Suy;
 #doas xbps-install -Sy voidbr-distrobox podman docker crun voidbr-lynxfetch chili-iso2usb chili-tradutor-go voidbr-vinstall;
 
 #flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
-xcheckrestart;
 
 ##Instalação da Steam com vinstall##
 #vinstall -Sy steam libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mono mesa-32bit vulkan-loader mesa-dri-32bit gstreamer1 winetricks vulkan-headers vulkan-tools lib32-vulkan-loader cpupower gamescope mesa-vulkan-intel mesa-vulkan-intel-32bit;

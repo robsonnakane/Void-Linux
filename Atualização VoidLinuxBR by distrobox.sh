@@ -14,15 +14,23 @@
 #log out
 
 ##Após a instalação dos doas como root, descomentar as opções abaixo##
-#doas xbps-pkgdb -a;
+doas xbps-pkgdb -a;
 doas xbps-install -Sy;
 doas xbps-install -Syu;
+doas rkhunter --propupd --update;
+doas rkhunter --check --skip-keypress --report-warnings-only;
+doas cat /var/log/rkhunter.log | grep -E "Warning";
 xcheckrestart;
 
     ##Instalação de pacotes KDE oficial##
-#doas xbps-install -Sy podman docker crun rsync flatpak xtools nano gnome-disk-utility bluez bluez-alsa bluez-deprecated libspa-bluetooth blueman kdeconnect spectacle speedtest-cli ethtool tailscale;
+#doas xbps-install -Sy podman docker crun rsync flatpak xtools nano gnome-disk-utility bluez bluez-alsa bluez-deprecated libspa-bluetooth blueman kdeconnect spectacle speedtest-cli ethtool tailscale rkhunter ufw;
 
-##Ativação do tailscale##
+##Ativar o ufw firewall##
+#doas ufw status;
+#doas ufw enable;
+#doas ufw allow ssh;
+
+##Ativação do tailscale, reinicializar após a instalação##
 #doas ln -s /etc/sv/tailscaled /var/service/
 #doas tailscale up --force-reauth;
 #doas tailscale up --ssh --accept-dns=false;
@@ -40,6 +48,8 @@ xcheckrestart;
 #distrobox create -Y --name archlinux --image docker.io/library/archlinux:latest;
         ##Fedora##
 #distrobox create -Y --name fedora --image quay.io/fedora/fedora:rawhide;
+        ##Alpine Linux##
+#distrobox create -Y --name alpine --image docker.io/library/alpine:latest;
 
 distrobox-upgrade --all -v;
 
@@ -86,31 +96,6 @@ doas reboot
 #ssh robsonnakane@100.73.4.37
 
 ##capengapc
-#doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@100.125.34.59:/home/robsonnakane/'Robson Nakane'/
+#doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@100.69.57.33:/home/robsonnakane/'Robson Nakane'/
 ## Acesso capengapc
-#ssh robsonnakane@100.125.34.59
-
-##Melhorias na internet (fazer linha a linha)##
-#ip link show | grep -i up
-#ethtool enp1s0
-#sudo ip link set dev enp1s0 mtu 1460
-
-##Editar no final: sudo nano /etc/dhcpcd.conf##
-#interface enp1s0
-#mtu 1460
-
-##Editar no final: sudo nano /etc/rc.local##
-##!/bin/sh
-## Otimiza Realtek r8169 - desativa offloads problemáticos
-#ethtool -K enp1s0 tso off gso off gro off rx off tx off sg off ufo off
-
-#sudo chmod +x /etc/rc.local
-
-##Pode executar todos juntos##
-#sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
-#sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
-#echo 'net.ipv6.conf.all.disable_ipv6 = 1' | sudo tee /etc/sysctl.d/99-disable-ipv6.conf
-#echo 'net.ipv6.conf.default.disable_ipv6 = 1' | sudo tee -a /etc/sysctl.d/99-disable-ipv6.conf
-#sudo sysctl -p /etc/sysctl.d/99-disable-ipv6.conf
-
-#sudo ethtool -s enp3s0 speed 1000 duplex full autoneg off
+#ssh robsonnakane@100.69.57.33
