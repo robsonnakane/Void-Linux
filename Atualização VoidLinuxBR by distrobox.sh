@@ -32,7 +32,7 @@ xcheckrestart;
 
 ##Ativação do tailscale, reinicializar após a instalação##
 #doas ln -s /etc/sv/tailscaled /var/service/
-#doas tailscale up --force-reauth --ssh --accept-dns=false;
+#doas tailscale up --ssh --accept-dns --force-reauth;
 
     ##Pacotes Voidbr / Chililinux##
 #doas xbps-install -Sy voidbr-distrobox voidbr-lynxfetch chili-iso2usb chili-tradutor-go voidbr-vinstall;
@@ -41,11 +41,15 @@ xcheckrestart;
 
 ##Após o reboot##
         ##Criação dos containeres no distrobox##
+        ##Debian Testing##
+#distrobox create -Y --name debian --image docker.io/library/debian:testing
         ##Archlinux##
 #distrobox create -Y --name archlinux --image docker.io/library/archlinux:latest;
         ##Fedora##
 #distrobox create -Y --name fedora --image quay.io/fedora/fedora:rawhide;
-        
+        ##Alpine Linux##
+#distrobox create -Y --name alpine --image docker.io/library/alpine:latest;
+
 distrobox-upgrade --all -v;
 
         ##Instalação dos pacotes nos containeres distrobox##
@@ -58,9 +62,22 @@ distrobox-upgrade --all -v;
 
         ##Exportação dos pacotes instalados no distrobox fedora##
 #distrobox enter fedora -- distrobox-export --app audacity; distrobox enter fedora -- distrobox-export --app inkscape; distrobox enter fedora -- distrobox-export --app gnome-boxes;
-        
+
+        ##Instalação do lutris dentro do terminal distrobox debian##
+#echo -e "Types: deb\nURIs: https://download.opensuse.org/repositories/home:/strycore/Debian_12/\nSuites: ./\nComponents: \nSigned-By: /etc/apt/keyrings/lutris.gpg" | sudo tee /etc/apt/sources.list.d/lutris.sources > /dev/null
+#wget -q -O- https://download.opensuse.org/repositories/home:/strycore/Debian_12/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/lutris.gpg
+#sudo apt update;
+#apt install -y lutris
+#distrobox-export --app lutris
+
         ##Instalação dos pacotes flatpaks##
-#flatpak install flathub com.spotify.Client -y;flatpak install flathub us.zoom.Zoom -y; flatpak install flathub org.onlyoffice.desktopeditors -y; flatpak install flathub com.adobe.Flash-Player-Projector -y; flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y; flatpak install flathub org.chromium.Chromium -y; flatpak install flathub org.fedoraproject.MediaWriter -y; flatpak install flathub org.kde.kget -y; flatpak install flathub org.videolan.VLC -y; flatpak install flathub net.mkiol.SpeechNote -y; flatpak install flathub com.saivert.pwvucontrol -y; flatpak install flathub io.github.dvlv.boxbuddyrs -y; flatpak install flathub org.telegram.desktop -y; flatpak install flathub com.obsproject.Studio -y;
+#flatpak install flathub com.spotify.Client -y;flatpak install flathub us.zoom.Zoom -y; flatpak install flathub org.onlyoffice.desktopeditors -y; flatpak install flathub com.adobe.Flash-Player-Projector -y; flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y; flatpak install flathub org.chromium.Chromium -y; flatpak install flathub org.fedoraproject.MediaWriter -y; flatpak install flathub org.kde.kget -y; flatpak install flathub org.videolan.VLC -y; flatpak install flathub net.mkiol.SpeechNote -y; flatpak install flathub com.saivert.pwvucontrol -y; flatpak install flathub io.github.dvlv.boxbuddyrs -y; flatpak install flathub org.telegram.desktop -y; flatpak install flathub com.obsproject.Studio -y; flatpak install flathub org.jousse.vincent.Pomodorolm -y; flatpak install flathub com.rustdesk.RustDesk -y; flatpak install flathub it.andreafontana.hideout -y;
+
+###Rustdesk com tailscale###
+##Na opção Segurança nas Configurações do RustDesk
+#Permissões: Acesso completo
+#Senha: Utilizar senha permanente / configurar senha permanente
+#Segurança: habilitar a opção "Habilitar Acesso IP Direto"
 
     ##Atualização do Flatpak##
 flatpak update -y;
@@ -79,11 +96,11 @@ doas reboot
 
 ##Backup/Acesso via Rsync + Tailscale##
 ##voidlinuxserver
-#doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@100.73.4.37:/home/robsonnakane/lenovo/
+#doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@voidlinuxserver:/home/robsonnakane/lenovo/
 ##Acesso voidlinuxserver
-#ssh robsonnakane@100.73.4.37
+#ssh voidlinuxserver
 
-##capengapc
-#doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@100.69.57.33:/home/robsonnakane/'Robson Nakane'/
+##Alpine Linux
+#doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@alpinelinuxserver:/home/robsonnakane/'Robson Nakane'/
 ## Acesso capengapc
-#ssh robsonnakane@100.69.57.33
+#ssh alpinelinuxserver

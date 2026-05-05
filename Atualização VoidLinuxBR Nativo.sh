@@ -35,8 +35,7 @@ xcheckrestart;
 
 ##Ativação do tailscale##
 #doas ln -s /etc/sv/tailscaled /var/service/
-#doas tailscale up --force-reauth;
-#doas tailscale up --ssh --accept-dns=false;
+#doas tailscale up --ssh --accept-dns --force-reauth;
 
     ##Pacotes Voidbr / Chililinux##
 #doas xbps-install -Sy voidbr-distrobox podman docker crun voidbr-lynxfetch chili-iso2usb chili-tradutor-go voidbr-vinstall;
@@ -59,13 +58,19 @@ xcheckrestart;
 #cpupower frequency-info
 
     ##Instalação dos pacotes flatpaks##
-#flatpak install flathub com.spotify.Client -y; flatpak install flathub com.valvesoftware.Steam -y; flatpak install flathub us.zoom.Zoom -y; flatpak install flathub org.onlyoffice.desktopeditors -y; flatpak install flathub com.adobe.Flash-Player-Projector -y; flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y; flatpak install flathub org.chromium.Chromium -y; flatpak install flathub org.fedoraproject.MediaWriter -y; flatpak install flathub org.kde.kget -y; flatpak install flathub org.videolan.VLC -y; flatpak install flathub net.mkiol.SpeechNote -y; flatpak install flathub com.saivert.pwvucontrol -y flatpak install flathub org.jousse.vincent.Pomodorolm -y;
+#flatpak install flathub com.spotify.Client -y; flatpak install flathub com.valvesoftware.Steam -y; flatpak install flathub us.zoom.Zoom -y; flatpak install flathub org.onlyoffice.desktopeditors -y; flatpak install flathub com.adobe.Flash-Player-Projector -y; flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y; flatpak install flathub org.chromium.Chromium -y; flatpak install flathub org.fedoraproject.MediaWriter -y; flatpak install flathub org.kde.kget -y; flatpak install flathub org.videolan.VLC -y; flatpak install flathub net.mkiol.SpeechNote -y; flatpak install flathub com.saivert.pwvucontrol -y flatpak install flathub org.jousse.vincent.Pomodorolm -y; flatpak install flathub com.rustdesk.RustDesk -y; flatpak install flathub it.andreafontana.hideout -y;
+
+###Rustdesk com tailscale###
+##Na opção Segurança nas Configurações do RustDesk
+#Permissões: Acesso completo
+#Senha: Utilizar senha permanente / configurar senha permanente
+#Segurança: habilitar a opção "Habilitar Acesso IP Direto"
 
     ##Atualização do Flatpak##
 flatpak update -y;
 
 vinstall -Sycc;
-doas reboot
+doas poweroff
 
     ##Baixar um vídeo em melhor qualidade:##
 #distrobox enter archlinux -- yt-dlp URL
