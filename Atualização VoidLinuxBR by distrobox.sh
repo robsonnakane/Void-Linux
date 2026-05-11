@@ -101,6 +101,6 @@ doas reboot
 #ssh voidlinuxserver
 
 ##Alpine Linux
-#doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@alpinelinuxserver:/home/robsonnakane/'Robson Nakane'/
+#doas rsync -avzrp --delete /home/robsonnakane/'Robson Nakane'/ robsonnakane@capengapc:/home/robsonnakane/'Robson Nakane'/
 ## Acesso capengapc
-#ssh alpinelinuxserver
+#ssh capengapc
