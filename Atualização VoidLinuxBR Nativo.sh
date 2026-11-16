@@ -17,6 +17,7 @@
 doas xbps-pkgdb -a;
 doas xbps-install -Sy;
 doas xbps-install -Suy;
+doas xbps-remove -OO;
 doas rkhunter --propupd --update;
 doas rkhunter --check  --skip-keypress --report-warnings-only;
 doas cat /var/log/rkhunter.log | grep -E "Warning";
